@@ -1,0 +1,69 @@
+.rTable {
+    display: block;
+    width: 100%;
+}
+.rTableHeading, .rTableBody, .rTableFoot, .rTableRow{
+    clear: both;
+}
+.rTableHead, .rTableFoot{
+    background-color: #1A5276;
+    font-weight: bold;
+    color: #fff;
+}
+.rTableCell, .rTableHead {
+    
+    border: 1px solid #999999;
+    float: left;
+    height: 25px;
+    overflow: hidden;
+    padding: 0px 1.8%;
+    width: 20%;
+}
+.rTableCell {
+    background-color: #D6EAF8;
+}
+.rTable:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+/* inner */
+
+.rTableInner {
+    display: block;
+    width: 100%;
+}
+.rTableHeadingInner, .rTableBodyInner, .rTableFootInner, .rTableRowInner{
+    clear: both;
+}
+.rTableHeadInner, .rTableFootInner{
+    background-color: #EAECEE;
+    font-weight: bold;
+}
+.rTableCellInner, .rTableHeadInner {
+    border: 1px solid #999999;
+    float: left;
+    height: 25px;
+    overflow: hidden;
+    padding: 0px 1.8%;
+    width: 20%;
+}
+.rTableCellInnerNoBorder {
+    float: left;
+    height: 25px;
+    overflow: hidden;
+    padding: 0px 1.8%;
+    width: 20%;
+}
+.rTableInner:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}

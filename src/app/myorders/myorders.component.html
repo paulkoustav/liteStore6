@@ -1,0 +1,41 @@
+<div id="accordion" class="container">
+  <h2>My Orders</h2>
+  <div class="rTable">
+    <div class="rTableRow">
+      <div class="rTableHead"><strong>Order ID</strong></div>
+      <div class="rTableHead"><span style="font-weight: bold;">Amount</span></div>
+      <div class="rTableHead">Payment</div>
+      <div class="rTableHead">Date</div>
+    </div>
+    <div class="rTableRow" *ngFor="let order of records?.orders | keyvalue">
+      <div class="rTableCell"><span class="badge">{{order.key}}</span></div>
+      <div class="rTableCell">{{order.value.amount}}</div>
+      <div class="rTableCell">{{order.value.payment_method}}</div>
+      <div class="rTableCell">{{order.value.datetime}}
+        <a data-parent="#accordion" data-toggle="collapse" href="#collapse{{order.key}}">
+          <span class="glyphicon glyphicon-collapse-down"></span>
+        </a>
+      </div>
+
+      <div class="rTableInner" id="collapse{{order.key}}" class="collapse">
+        <div class="rTableRowInner">
+          <div class="rTableCellInnerNoBorder">Items of Order No. - {{order.key}} </div>
+          <div class="rTableHeadInner"><span style="font-weight: bold;">Products</span></div>
+          <div class="rTableHeadInner">Qty</div>
+          <div class="rTableHeadInner">Price</div>
+        </div>
+        <div class="rTableRowInner" *ngFor="let item of order.value.items; let i=index">
+          <div class="rTableCellInnerNoBorder"></div>
+          <div class="rTableCellInner">{{item.DisplayName}}</div>
+          <div class="rTableCellInner">{{item.Qty}}</div>
+          <div class="rTableCellInner">{{item.itemTotal}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="clear: both;"></div>
+<div class="text-center">
+  <app-btnpagination (goPage)="goToPage($event)" (goNext)="onNext()" (goPrev)="onPrev()" [pagerDetails]="pager"></app-btnpagination>
+</div>

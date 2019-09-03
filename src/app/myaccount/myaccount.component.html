@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="col-md-6 col-md-offset-3">
+    
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th colspan="2">My Profile</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Name</td>
+            <td>{{customer?.data.Name||0}}</td>
+          </tr>
+          <tr>
+            <td>Mobile</td>
+            <td>{{customer?.data.MobileNo||0}}</td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td>{{customer?.data.EmailId||0}}</td>
+          </tr>
+          <tr>
+            <td>Country</td>
+            <td>{{customer?.data.Country||0}}</td>
+          </tr>
+  
+        </tbody>
+      </table>
+  </div>
+</div>

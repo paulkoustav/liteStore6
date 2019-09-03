@@ -1,0 +1,12 @@
+<ul class="pagination">
+  <li *ngIf="pagerDetails?.displayPrev == 1"><a href="javascript:void(0);" (click)="onPrev()">&laquo;</a></li>
+  <ng-container *ngFor="let page of pagerDetails?.pageRange">
+    <ng-container *ngIf="pagerDetails?.currentPage === page;else otherpage">
+      <li class="active"><a href="javascript:void(0);">{{page}}</a></li>
+    </ng-container>
+    <ng-template #otherpage>
+      <li><a href="javascript:void(0);" (click)="onPage(page)">{{page}}</a></li>
+    </ng-template>
+  </ng-container>
+  <li *ngIf="pagerDetails?.displayNext == 1"><a href="javascript:void(0);" (click)="onNext(true)">&raquo;</a></li>
+</ul>

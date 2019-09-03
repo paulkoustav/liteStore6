@@ -1,0 +1,34 @@
+{
+    "records": {
+        "header_banner": [
+            {
+                "BannerImageUrl": "http:\/\/127.0.0.1\/liteStore6\/upload\/banner\/test1.jpg",
+                "link": "https://www.google.com",
+                "heading": "Lorem ipsum dolor sit amet",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                "active": "0"
+            },
+            {
+                "BannerImageUrl": "http:\/\/127.0.0.1\/liteStore6\/upload\/banner\/test2.jpg",
+                "link": "https://www.google.com",
+                "heading": "Lorem ipsum dolor sit amet",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                "active": "0"
+            },
+            {
+                "BannerImageUrl": "http:\/\/127.0.0.1\/liteStore6\/upload\/banner\/test3.jpg",
+                "link": "https://www.google.com",
+                "heading": "Lorem ipsum dolor sit amet",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                "active": "1"
+            },
+            {
+                "BannerImageUrl": "http:\/\/127.0.0.1\/liteStore6\/upload\/banner\/test4.jpg",
+                "link": "https://www.google.com",
+                "heading": "Lorem ipsum dolor sit amet",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                "active": "0"
+            }
+        ]
+    }
+}

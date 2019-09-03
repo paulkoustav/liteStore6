@@ -1,0 +1,16 @@
+<div class="card mt-5" style="margin:auto;width: 600px;">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <h5 class="card-title">Login</h5>
+    <div class="form-group">
+      <label for="MobileNo">MobileNo</label>
+      <input type="text" class="form-control" id="MobileNo" placeholder="MobileNo" [(ngModel)]="model.MobileNo" #email="ngModel" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="form-group">
+      <label for="Password">Password</label>
+      <input type="password" class="form-control" id="Password" placeholder="Password" [(ngModel)]="model.Password" #password="ngModel" [ngModelOptions]="{standalone: true}">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="tryLogin()">Login</button>
+    </form>
+  </div>
+</div>

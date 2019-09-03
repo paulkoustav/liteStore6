@@ -1,0 +1,176 @@
+<div *ngIf="shareddata?.items?.length>0; else empty_cart">
+  <div class="container">
+    <table id="cart" class="table table-hover table-condensed">
+      <thead>
+        <tr>
+          <th style="width:50%">Product</th>
+          <th style="width:10%">Price</th>
+          <th style="width:8%">Quantity</th>
+          <th style="width:22%" class="text-center">Subtotal</th>
+          <th style="width:10%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of shareddata?.items">
+          <td data-th="Product">
+            <div class="row">
+              <div class="col-sm-2 hidden-xs"><img src="assets/images/no_image_available.png" alt="..." class="img-responsive" /></div>
+              <div class="col-sm-10">
+                <h4 class="nomargin">{{item.DisplayName}}</h4>
+                <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem
+                  ipsum dolor sit amet.</p>
+              </div>
+            </div>
+          </td>
+          <td data-th="Price"><i class="fa fa-rupee">{{item.OfferPrice}}</i><i class="fa fa-rupee"><span class="line-through">{{item.MRP}}</span></i></td>
+          <td data-th="Quantity">
+            <app-addupdatecartbtn [prd]="item" [display]="display2"></app-addupdatecartbtn>
+          </td>
+          <td data-th="Subtotal" class="text-center">{{item.itemTotal}}</td>
+          <td class="actions" data-th="">
+            <app-addupdatecartbtn [prd]="item" [display]="display"></app-addupdatecartbtn>
+
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr class="visible-xs">
+          <td class="text-center"><strong>Total : {{shareddata?.items|netPay:'itemTotal'}}</strong></td>
+        </tr>
+        <tr>
+          <td><a routerLink="/" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+          <td colspan="2" class="hidden-xs"></td>
+          <td class="hidden-xs text-center"><strong>Total - {{shareddata?.items|netPay:'itemTotal'}}</strong></td>
+          <td class="hidden-xs">&nbsp;</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div class="row">
+    <div class="col-75">
+      <div class="container">
+        <form action="">
+
+          <div class="row">
+            <div class="col-50">
+              <div class="">
+                <h3>Choose address</h3>
+                <select [(ngModel)]="model.address_id" name="address_id" id="address_id" (change)="changeAddress($event.target.value)">
+                  <option value="">--choose--</option>
+                  <option *ngFor="let address of shareddata?.address_all" value="{{address?.id}}">{{address?.street}}-{{address?.pin}}</option>
+                  <option value="-1">Add New</option>
+                </select>&nbsp;
+                <button name="addAddr" id="addAddr" class="btn" *ngIf="!addressSelected?.length" (click)="addAddress()">Save
+                  new address</button>
+              </div>
+
+              <div *ngIf="addressSelected?.length; else newAddress">
+
+                <input type="text" id="fname" name="name" placeholder="John M. Doe" readonly disabled value="{{addressSelected[0].name}}">
+                <input type="text" id="email" name="email" placeholder="email@email.com" readonly disabled value="{{addressSelected[0].email}}">
+                <input type="text" id="street" name="street" placeholder="street" readonly disabled value="{{addressSelected[0].street}}">
+                <input type="text" id="city" name="city" placeholder="city" readonly disabled value="{{addressSelected[0].city}}">
+                <input type="text" id="state" name="state" title="state" readonly disabled value="{{addressSelected[0].state}}">
+                <input type="text" id="country" name="country" title="country" readonly disabled value="{{addressSelected[0].country}}">
+              </div>
+
+              <ng-template #newAddress>
+
+                <input type="text" id="fname" name="firstname" placeholder="John M. Doe" [(ngModel)]="model.name">
+                <input type="text" id="email" name="email" placeholder="email@email.com" [(ngModel)]="model.email">
+                <input type="text" id="adr" name="street" placeholder="street" [(ngModel)]="model.street">
+                <input type="text" id="city" name="city" placeholder="city" [(ngModel)]="model.city">
+
+                <div>
+                  <select [(ngModel)]="model.state" name="state" id="state" title="state">
+                    <option value="West Bengal">West Bengal</option>
+                    <option value="Delhi">Delhi</option>
+                  </select>&nbsp;
+                  <select [(ngModel)]="model.country" name="country" id="country" title="country">
+                    <option value="India">India</option>
+                    <option value="USA">USA</option>
+                  </select>
+                </div>
+                <input type="text" id="pin" name="pin" placeholder="pin no" [(ngModel)]="model.pin">
+
+              </ng-template>
+
+
+            </div>
+
+            <div class="col-25">
+              <h3>Payment options</h3>
+              <div>
+                <div><input type="radio" id="cod" value="cod" name="payment_method" [(ngModel)]="model.payment_method">
+                  <label for="cod" title="Cash On Delivery"><img src="assets/images/cod.png"> </label></div>
+                <div><input type="radio" id="paytm" value="paytm" name="payment_method" [(ngModel)]="model.payment_method">
+                  <label for="paytm" title="Paytm"><img src="assets/images/Paytm_logo.png"> </label></div>
+              </div>
+
+            </div>
+
+            <div class="col-25">
+              <div>
+                <input type="checkbox" name="terms_cond" id="terms_cond" value="1" [(ngModel)]="model.terms_cond">
+                Please
+                check terms and condition (<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal">read</a>)
+              </div>
+              <div class="checkout_block">
+                <button name="checkout" id="checkout" class="checkout" class="btn btn-success btn-block" (click)="placeOrder()">Continue
+                  to checkout <i class="fa fa-angle-right"></i></button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Terms and Conditions</h4>
+        </div>
+        <div class="modal-body">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea
+            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea
+            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<ng-template #empty_cart>
+  <div class="text-center">
+    <img src="assets/images/empty-cart.png">
+    <h3>Your cart is empty...</h3>
+    <br />
+  </div>
+</ng-template>

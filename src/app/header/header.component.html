@@ -1,0 +1,61 @@
+<div class="page-header"></div>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" routerLink="/">
+        <img src="assets/images/logo.png" id="logo">
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a routerLink="/">Home</a></li>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Category <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li *ngFor="let category of categories">
+              <a routerLink="search/{{category.cat_name}}">{{category.cat_name}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <form class="navbar-form navbar-left">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search" name="searchText" #searchText>
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="submit" (click)="onSearch(searchText.value)">
+              <i class="glyphicon glyphicon-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <button class="btn btn-danger navbar-btn" routerLink="contact">Contact Us</button>
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="dropdown" *ngIf="isLoggedIn; else loggedOut">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>
+            {{name}} <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="myaccount">My Profile</a></li>
+            <li><a routerLink="myorders">My Orders</a></li>
+            <li><a href="javascript:void(0);" (click)="logout()">Logout</a></li>
+          </ul>
+        </li>
+        <ng-template #loggedOut>
+          <li>
+            <a routerLink="login"><span class="glyphicon glyphicon-user"></span> Your Account</a>
+          </li>
+        </ng-template>
+
+        <li><a routerLink="cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart <span class="badge">{{shareddata?.items?.length}}</span></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

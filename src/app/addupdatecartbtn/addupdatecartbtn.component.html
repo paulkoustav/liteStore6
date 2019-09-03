@@ -1,0 +1,14 @@
+<ng-container *ngIf="display?.for === 'cart_update';else cart_delete">
+    <div class="pull-left w-75"><input type="number" class="form-control" id="Qty" min="1" [(ngModel)]="prd.Qty"></div>
+    <div class="pull-left pad-3"><a href="javascript:void(0);" (click)="addToCart(prd,prd.Qty)" title="{{display?.lbl}}"><span
+                class="glyphicon glyphicon-refresh"></span></a></div>
+</ng-container>
+<ng-template #cart_delete>
+    <ng-container *ngIf="display?.for === 'cart_delete';else add_cart">
+        <a href="javascript:void(0);" (click)="addToCart(prd,0)" title="{{display?.lbl}}"><span class="glyphicon glyphicon-trash"></span></a>
+    </ng-container>
+</ng-template>
+<ng-template #add_cart>
+    <button type="button" class="btn btn-info" (click)="addToCart(prd)">{{display?.lbl}}</button>
+
+</ng-template>

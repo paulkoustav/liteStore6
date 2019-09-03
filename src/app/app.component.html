@@ -1,0 +1,19 @@
+<div id="container">
+  <app-header></app-header>
+  <!--<app-sidebar></app-sidebar>-->
+  <div id="content" class="body-container">
+
+    <div *ngIf="message" class="msg_container">
+      <ng-container *ngIf="message?.type == 'success';else error">
+        <span class="alert alert-success"><i class="fa fa-check"></i> {{message.text}}</span>
+      </ng-container>
+      <ng-template #error>
+        <span class="alert alert-danger"><i class="fa fa-warning"></i> {{message.text}}</span>
+      </ng-template>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer></app-footer>
+
+</div>

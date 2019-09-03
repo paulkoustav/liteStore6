@@ -1,0 +1,36 @@
+<div class="container-fluid">
+
+  <div class="page-header">
+    Showing {{pager?.total}} results for : <b>{{qString}}</b>
+  </div>
+  <div class="row text-center">
+
+    <div class="col-sm-2" *ngFor="let product of records?.products">
+      <div class="thumbnail">
+        <a routerLink="/product/{{ product.DisplayName|productUri:product.ProductId}}">
+          <img src="https://res.sastasundar.com/incom/images/product/{{product.ProductImage}}" onerror="this.src='assets/images/no_image_available.png'"
+            alt="Paris" class="img-responsive img-thumbnail img-fluid"></a>
+        <div class="caption">
+          <p>
+            <a routerLink="/product/{{ product.DisplayName|productUri:product.ProductId}}">{{ product.DisplayName }}</a>
+          </p>
+
+          <div class="clearfix">
+            <div class="w-50 pull-left"><i class="fa fa-inr"></i><s>{{ product.MRP }}</s></div>
+            <div class="w-50 pull-right"><i class="fa fa-inr"></i>{{ product.OfferPrice }}</div>
+          </div>
+
+          <app-addupdatecartbtn [prd]="product" [display]="records?.display"></app-addupdatecartbtn>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row text-center">
+    <app-btnpagination (goPage)="goToPage($event)" (goNext)="onNext()" (goPrev)="onPrev()" [pagerDetails]="pager"></app-btnpagination>
+  </div>
+
+
+</div>
